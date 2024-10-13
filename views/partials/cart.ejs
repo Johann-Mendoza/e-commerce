@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f5f5dc; /* Light beige background */
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            font-family: 'Arial', sans-serif;
+        }
+        .container {
+            background-color: #ffffff; /* White container */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #8B4513; /* Saddle brown */
+            margin-bottom: 30px;
+        }
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        .card-body {
+            background-color: #f9f9f9; /* Light gray */
+            border-radius: 10px;
+        }
+        .card-title {
+            color: #8B4513; /* Saddle brown */
+        }
+        .btn-danger {
+            background-color: #ff4b5c; /* Red for danger */
+            border: none;
+            border-radius: 20px;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+        .btn-danger:hover {
+            background-color: #dc3545; /* Darker red on hover */
+        }
+        .btn-success, .btn-secondary {
+            border-radius: 20px;
+            width: 100%;
+            padding: 10px;
+            transition: background-color 0.3s;
+        }
+        .btn-success {
+            background-color: #d2b48c; /* Tan */
+        }
+        .btn-success:hover {
+            background-color: #8B4513; /* Darker brown on hover */
+            color: white;
+        }
+        .btn-secondary {
+            background-color: #f5f5dc; /* Light beige */
+            border: 1px solid #d2b48c; /* Tan border */
+            color: #8B4513; /* Saddle brown */
+        }
+        .btn-secondary:hover {
+            background-color: #d2b48c; /* Tan on hover */
+            color: white;
+        }
+        .text-center a {
+            margin-top: 10px;
+        }
+        .empty-cart {
+            text-align: center;
+            color: #6c757d; /* Gray */
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Your Cart</h1>
+        <div class="row">
+            <% if (cart.length > 0) { %>
+                <% cart.forEach(item => { %>
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title"><%= item.name %></h5>
+                                <p class="card-text">Price: $<%= item.price.toFixed(2) %></p>
+                                <p class="card-text">Quantity: <%= item.quantity %></p>
+                                <form action="/cart/remove" method="POST">
+                                    <input type="hidden" name="productId" value="<%= item.id %>">
+                                    <button type="submit" class="btn btn-danger">Remove from Cart</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                <% }); %>
+                <!-- Add Checkout Button -->
+                <div class="col-md-12 text-center mt-4">
+                    <a href="/checkout" class="btn btn-success">Proceed to Checkout</a>
+                </div>
+            <% } else { %>
+                <div class="col-md-12 empty-cart">
+                    <p>Your cart is empty.</p>
+                </div>
+            <% } %>
+        </div>
+        <div class="text-center mt-4">
+            <a href="/clientdashboard" class="btn btn-secondary">Continue Shopping</a>
+        </div>
+    </div>
+</body>
+</html>

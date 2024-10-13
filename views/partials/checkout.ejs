@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #f8f8e1, #e6d5b8); /* Light beige gradient */
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+        }
+        .container {
+            background-color: #ffffff; /* White background for the container */
+            padding: 40px;
+            border-radius: 15px; /* Rounded corners */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            max-width: 600px; /* Maximum width */
+            width: 100%; /* Full width */
+        }
+        h1 {
+            text-align: center;
+            color: #8B4513; /* Saddle brown for heading */
+            margin-bottom: 30px; /* Space below heading */
+        }
+        p {
+            font-size: 18px; /* Font size for paragraphs */
+            color: #555; /* Dark gray color for text */
+            text-align: center; /* Center text */
+            margin: 10px 0; /* Vertical margin */
+        }
+        strong {
+            color: #8B4513; /* Saddle brown for strong text */
+        }
+        .btn-success {
+            background-color: #d2b48c; /* Tan for success button */
+            border: none; /* No border */
+            border-radius: 20px; /* Rounded corners */
+            width: 100%; /* Full width */
+            padding: 10px; /* Padding for button */
+            font-size: 18px; /* Font size for button */
+            transition: background-color 0.3s; /* Smooth transition */
+        }
+        .btn-success:hover {
+            background-color: #c19a6b; /* Darker tan on hover */
+            color: white; /* White text on hover */
+        }
+        .btn-secondary {
+            background-color: #f8f8e1; /* Light beige for secondary button */
+            border: 1px solid #d2b48c; /* Tan border */
+            color: #8B4513; /* Saddle brown text */
+            width: 100%; /* Full width */
+            border-radius: 20px; /* Rounded corners */
+            padding: 10px; /* Padding for button */
+            font-size: 16px; /* Font size for button */
+            margin-top: 15px; /* Space above the button */
+            transition: background-color 0.3s; /* Smooth transition */
+        }
+        .btn-secondary:hover {
+            background-color: #d2b48c; /* Tan background on hover */
+            color: white; /* White text on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Checkout</h1>
+        <p>Your total is: <strong>$<%= total.toFixed(2) %></strong></p>
+        <p>Payment method: <strong>Cash</strong></p>
+        <form action="/checkout/complete" method="POST">
+            <button type="submit" class="btn btn-success">Confirm Purchase</button>
+        </form>
+        <a href="/cart" class="btn btn-secondary">Go back to Cart</a>
+    </div>
+</body>
+</html>
